@@ -1,0 +1,41 @@
+# Steel Surface Defect Detection - Python Dependencies
+
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+opencv-python>=4.8.0
+Pillow>=10.0.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+tqdm>=4.65.0
+pyyaml>=6.0
+scikit-learn>=1.3.0
+
+# Object detection frameworks
+ultralytics>=8.0.0  # YOLOv8, RT-DETR (Ultralytics unified API)
+
+# Two-stage detectors (Faster R-CNN via torchvision — no extra install needed)
+# torchvision is already listed above
+
+# Data augmentation
+albumentations>=1.3.0
+
+# Model optimization
+onnx>=1.14.0
+onnxruntime>=1.15.0
+
+# Utilities
+jupyter>=1.0.0
+notebook>=6.5.0
+ipywidgets>=8.0.0
+pandas>=2.0.0
+
+# PDF generation (optional, for report generation)
+markdown>=3.4.0
+# pypandoc>=1.11  # Uncomment if using pandoc for PDF conversion
+
+# Development tools (optional)
+pytest>=7.4.0
+black>=23.7.0
+flake8>=6.1.0

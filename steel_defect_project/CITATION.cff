@@ -1,0 +1,43 @@
+If you use this project in your research, please cite:
+
+@mastersthesis{steel_defect_detection_2026,
+  title={Comparative Analysis of YOLO and DETR Architectures for Automated Steel Surface Defect Detection},
+  author={[Student Name]},
+  year={2026},
+  school={[University Name]},
+  type={Master's Thesis},
+  note={Available at: [Repository URL]}
+}
+
+Please also cite the NEU-DET dataset:
+
+@article{song2013neu,
+  title={A noise robust method based on completed local binary patterns for hot-rolled steel strip surface defects},
+  author={Song, Kechen and Yan, Yunhui},
+  journal={Applied Surface Science},
+  volume={285},
+  pages={858--864},
+  year={2013},
+  publisher={Elsevier},
+  doi={10.1016/j.apsusc.2013.09.002}
+}
+
+Key references:
+
+YOLOv8:
+@software{yolov8_ultralytics,
+  author = {Jocher, Glenn and Chaurasia, Ayush and Qiu, Jing},
+  title = {Ultralytics YOLOv8},
+  year = {2023},
+  url = {https://github.com/ultralytics/ultralytics}
+}
+
+DETR:
+@inproceedings{carion2020detr,
+  title={End-to-end object detection with transformers},
+  author={Carion, Nicolas and Massa, Francisco and Synnaeve, Gabriel and Usunier, Nicolas and Kirillov, Alexander and Zagoruyko, Sergey},
+  booktitle={European conference on computer vision},
+  pages={213--229},
+  year={2020},
+  organization={Springer}
+}

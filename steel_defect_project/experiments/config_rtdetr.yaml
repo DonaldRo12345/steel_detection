@@ -1,0 +1,57 @@
+# RT-DETR Training Configuration for Steel Surface Defect Detection
+
+# Model configuration
+model: rtdetr-l.pt    # Variants: rtdetr-l.pt, rtdetr-x.pt
+
+# Dataset configuration (YOLO format)
+data: data/processed/yolo/data.yaml
+nc: 6
+names: ['Crazing', 'Inclusion', 'Patches', 'Pitted_surface', 'Rolled-in_scale', 'Scratches']
+
+# Training hyperparameters
+epochs: 80
+batch: 8
+imgsz: 640
+workers: 4
+
+# Optimizer
+optimizer: AdamW
+lr0: 0.0001
+lrf: 0.01
+weight_decay: 0.0001
+
+# Augmentation (lighter than YOLO — RT-DETR is more sensitive to heavy augmentation)
+hsv_h: 0.015
+hsv_s: 0.5
+hsv_v: 0.3
+degrees: 5.0
+translate: 0.1
+scale: 0.3
+flipud: 0.3
+fliplr: 0.5
+mosaic: 0.5
+mixup: 0.0
+
+# Loss weights
+box: 5.0
+cls: 1.0
+dfl: 1.0
+
+# Validation
+val: true
+val_period: 1
+save_period: 10
+
+# Other
+deterministic: true
+seed: 42
+device: ''
+verbose: true
+plots: true
+save: true
+exist_ok: true
+project: results/models
+name: rtdetr_steel
+
+patience: 30
+pretrained: true

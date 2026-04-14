@@ -1,0 +1,67 @@
+# Enhanced YOLOv8 Training Configuration for Steel Surface Defect Detection
+# Targeted improvements: small-defect P2 head, CLAHE, aggressive augmentation
+
+# Base model
+model: yolov8n.pt
+
+# Dataset
+data: data/processed/yolo/data.yaml
+nc: 6
+names: ['Crazing', 'Inclusion', 'Patches', 'Pitted_surface', 'Rolled-in_scale', 'Scratches']
+
+# Enhancements
+enhancements:
+  clahe: true                 # CLAHE pre-processing for low-contrast defects
+  clahe_clip_limit: 3.0
+  p2_head: true               # Add stride-4 detection head for small defects
+  class_weights: auto          # Derive weights from prior evaluation
+
+# Training hyperparameters
+epochs: 80
+batch: 8
+imgsz: 640
+workers: 4
+
+# Optimizer
+optimizer: SGD
+lr0: 0.01
+lrf: 0.01
+momentum: 0.937
+weight_decay: 0.0005
+
+# Aggressive augmentation for small & low-contrast targets
+hsv_h: 0.02
+hsv_s: 0.8
+hsv_v: 0.5
+degrees: 15.0
+translate: 0.2
+scale: 0.9
+shear: 0.0
+perspective: 0.0
+flipud: 0.3
+fliplr: 0.5
+mosaic: 1.0
+mixup: 0.15
+copy_paste: 0.3
+
+# Loss weights
+box: 7.5
+cls: 0.5
+dfl: 1.5
+
+# Validation
+val: true
+save_period: 10
+
+deterministic: true
+seed: 42
+device: ''
+verbose: true
+plots: true
+save: true
+exist_ok: true
+project: results/models
+name: yolo_enhanced
+
+patience: 25
+pretrained: false         # Custom P2 architecture — no pretrained available

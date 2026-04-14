@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Results
+results/models/*
+!results/models/.gitkeep
+results/metrics/*
+!results/metrics/.gitkeep
+results/visuals/*
+!results/visuals/.gitkeep
+
+# YOLO / Ultralytics training run outputs
+runs/
+
+# Pre-trained / downloaded model weights (large binaries)
+*.pt
+*.pth
+
+# ONNX exports
+*.onnx
+*.onnx.data
+
+# Generated report artifacts
+report/
+
+# Test sample media
+tests/*.jpg
+tests/*.png
+tests/*.jpeg
+
+# Logs
+experiments/logs/*
+!experiments/logs/.gitkeep
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

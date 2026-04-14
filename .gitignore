@@ -1,0 +1,4 @@
+# Root-level ignores (outside steel_defect_project/)
+
+# Training log files written to repo root experiments/ by scripts
+experiments/logs/

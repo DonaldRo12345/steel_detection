@@ -1,0 +1,108 @@
+# DETR Training Configuration for Steel Surface Defect Detection
+
+# Model architecture
+model:
+  type: DETR-Lite
+  num_classes: 6
+  num_queries: 100
+  hidden_dim: 256
+  nheads: 8
+  num_encoder_layers: 3
+  num_decoder_layers: 3
+  backbone: resnet50
+  pretrained_backbone: false
+
+# Dataset configuration
+data:
+  root_dir: data/processed/coco
+  train_annotation: annotations_train.json
+  val_annotation: annotations_val.json
+  test_annotation: annotations_test.json
+  num_classes: 6
+  class_names: ['Crazing', 'Inclusion', 'Patches', 'Pitted_surface', 'Rolled-in_scale', 'Scratches']
+
+# Training hyperparameters
+training:
+  epochs: 100
+  batch_size: 8
+  img_size: 640
+  num_workers: 4
+  
+  # Optimizer
+  optimizer:
+    type: AdamW
+    lr: 0.0001
+    weight_decay: 0.0001
+    betas: [0.9, 0.999]
+  
+  # Learning rate scheduler
+  lr_scheduler:
+    type: StepLR
+    step_size: 50
+    gamma: 0.1
+  
+  # Loss weights
+  loss_weights:
+    loss_ce: 1.0      # Classification loss weight
+    loss_bbox: 5.0    # Bbox regression loss weight
+    loss_giou: 2.0    # GIoU loss weight
+  
+  # Gradient clipping
+  clip_max_norm: 0.1
+
+# Data augmentation
+augmentation:
+  train:
+    - RandomRotate90:
+        p: 0.3
+    - HorizontalFlip:
+        p: 0.5
+    - VerticalFlip:
+        p: 0.3
+    - RandomBrightnessContrast:
+        brightness_limit: 0.2
+        contrast_limit: 0.2
+        p: 0.5
+    - GaussNoise:
+        var_limit: [10.0, 50.0]
+        p: 0.3
+    - Resize:
+        height: 640
+        width: 640
+  
+  val:
+    - Resize:
+        height: 640
+        width: 640
+
+# Validation
+validation:
+  interval: 1  # Validate every N epochs
+  save_best: true
+  metric: val_loss  # Metric to track for best model
+
+# Checkpointing
+checkpoint:
+  save_dir: results/models
+  save_period: 10  # Save checkpoint every N epochs
+  keep_last_n: 3  # Keep only last N checkpoints
+
+# Reproducibility
+seed: 42
+deterministic: true
+
+# Device
+device: auto  # auto, cuda, cpu
+
+# Logging
+logging:
+  log_dir: experiments/logs
+  log_interval: 10  # Log every N iterations
+  tensorboard: false
+  wandb: false
+
+# Output
+output:
+  save_predictions: false
+  visualize_predictions: false
+  num_vis_samples: 10
