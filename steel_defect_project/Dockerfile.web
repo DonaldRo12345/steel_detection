@@ -22,9 +22,9 @@ RUN pip install --no-cache-dir -r requirements.web.txt
 # Copy source and models
 COPY src/ ./src/
 COPY app.py .
-COPY results/models/yolo_best.pt          ./results/models/yolo_best.pt
-COPY results/models/yolo_enhanced_30ep/weights/best.pt  ./results/models/yolo_enhanced_best.pt
-COPY results/models/detr_best.pth         ./results/models/detr_best.pth
+COPY results/models/yolo_best.pt                   ./results/models/yolo_best.pt
+COPY results/models/yolo_enhanced_best.pt          ./results/models/yolo_enhanced_best.pt
+COPY results/models/detr_best.pth                  ./results/models/detr_best.pth
 
 EXPOSE 7860
 
