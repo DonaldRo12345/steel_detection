@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: steel-defect-detection
+    runtime: docker
+    dockerfilePath: steel_defect_project/Dockerfile.web
+    dockerContext: steel_defect_project
+    plan: free
+    envVars:
+      - key: PYTHONUNBUFFERED
+        value: "1"

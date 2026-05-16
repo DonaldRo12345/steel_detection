@@ -1,0 +1,31 @@
+# CPU-only web service for Render.com deployment
+FROM python:3.10-slim
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONPATH=/app/src
+
+# System deps for OpenCV
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgl1-mesa-glx \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+
+# Install Python deps first (layer caching)
+COPY requirements.web.txt .
+RUN pip install --no-cache-dir -r requirements.web.txt
+
+# Copy source and models
+COPY src/ ./src/
+COPY app.py .
+COPY results/models/yolo_best.pt          ./results/models/yolo_best.pt
+COPY results/models/yolo_enhanced_30ep/weights/best.pt  ./results/models/yolo_enhanced_best.pt
+COPY results/models/detr_best.pth         ./results/models/detr_best.pth
+
+EXPOSE 7860
+
+CMD ["python", "app.py"]

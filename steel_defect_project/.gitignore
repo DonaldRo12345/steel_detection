@@ -51,6 +51,10 @@ runs/
 # Pre-trained / downloaded model weights (large binaries)
 *.pt
 *.pth
+# Exception: web app models needed for Render deployment
+!results/models/yolo_best.pt
+!results/models/yolo_enhanced_best.pt
+!results/models/detr_best.pth
 
 # ONNX exports
 *.onnx
