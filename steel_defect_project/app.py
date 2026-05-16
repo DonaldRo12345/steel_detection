@@ -262,4 +262,4 @@ with gr.Blocks(title="Steel Defect Detection") as demo:
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 7860))
-    demo.launch(host="0.0.0.0", server_port=port, share=False, theme=gr.themes.Default())
+    demo.launch(server_name="0.0.0.0", server_port=port, share=False, theme=gr.themes.Default())
