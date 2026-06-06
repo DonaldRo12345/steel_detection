@@ -23,6 +23,7 @@ RUN pip install --no-cache-dir -r requirements.web.txt
 COPY src/ ./src/
 COPY app.py .
 COPY results/models/yolo_best.pt                   ./results/models/yolo_best.pt
+COPY results/models/yolo11n_best.pt                ./results/models/yolo11n_best.pt
 COPY results/models/yolo_enhanced_best.pt          ./results/models/yolo_enhanced_best.pt
 COPY results/models/detr_best.pth                  ./results/models/detr_best.pth
 

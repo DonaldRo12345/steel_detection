@@ -20,6 +20,7 @@ BASE = Path(__file__).parent
 
 YOLO_MODELS = {
     "YOLOv8n (Baseline) — mAP@0.5: 0.741":       BASE / "results/models/yolo_best.pt",
+    "YOLOv11n — mAP@0.5: 0.732":                BASE / "results/models/yolo11n_best.pt",
     "Enhanced YOLOv8 (CLAHE) — mAP@0.5: 0.664":  BASE / "results/models/yolo_enhanced_best.pt",
 }
 

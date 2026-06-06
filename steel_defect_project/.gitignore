@@ -53,6 +53,7 @@ runs/
 *.pth
 # Exception: web app models needed for Render deployment
 !results/models/yolo_best.pt
+!results/models/yolo11n_best.pt
 !results/models/yolo_enhanced_best.pt
 !results/models/detr_best.pth
 
