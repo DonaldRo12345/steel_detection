@@ -83,7 +83,9 @@ Les dossiers `runs/` (134 Mo) et `results/` (1,1 Go) restent sur le serveur.
 ## 6. Points de vigilance
 
 - `data.yaml` : chemin absolu → toujours régénéré par l'étape 3, jamais commité depuis le serveur.
-- `src/train_yolo11.py` : le device était codé en dur sur `cpu`, il est désormais auto-détecté.
+- `src/train_yolo11.py` : le device était codé en dur sur `cpu` et les hyperparamètres
+  (50 époques, batch 8) n'étaient pas pilotables ; le script a désormais les mêmes options
+  que les autres (`--epochs`, `--batch-size`, `--device`, `--name`...) et auto-détecte le GPU.
 - Les images pré-entraînées (`yolo11n.pt`, `yolov8n.pt`, `rtdetr-l.pt`) sont téléchargées
   par ultralytics au premier run : si le conteneur n'a pas Internet, les copier depuis
   le poste local dans le dossier du projet.

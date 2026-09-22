@@ -6,7 +6,7 @@
 #   ./tools/server/02_train.sh yolo_enhanced --epochs 150 --batch-size 32 --clahe
 #   ./tools/server/02_train.sh yolo          --epochs 100 --batch-size 32
 #   ./tools/server/02_train.sh rtdetr        --epochs 100 --batch-size 8
-#   ./tools/server/02_train.sh yolo11        (script sans arguments CLI)
+#   ./tools/server/02_train.sh yolo11        --epochs 150 --batch-size 32
 
 set -e
 
@@ -22,18 +22,14 @@ LOG="experiments/logs/${RUN_NAME}.log"
 export PYTHONPATH="$PROJECT_DIR/src:$PYTHONPATH"
 
 case "$VARIANT" in
-    yolo|yolo_enhanced|rtdetr)
+    yolo|yolo11|yolo_enhanced|rtdetr)
         case "$VARIANT" in
             yolo)          SCRIPT=src/train_yolo.py ;;
+            yolo11)        SCRIPT=src/train_yolo11.py ;;
             yolo_enhanced) SCRIPT=src/train_yolo_enhanced.py ;;
             rtdetr)        SCRIPT=src/train_rtdetr.py ;;
         esac
         ARGS=(--data "$DATA_YOLO" --name "$RUN_NAME" --output-dir results/models)
-        ;;
-    yolo11)
-        # script sans argparse : parametres codes en dur
-        SCRIPT=src/train_yolo11.py
-        ARGS=()
         ;;
     detr)
         SCRIPT=src/train_detr.py
