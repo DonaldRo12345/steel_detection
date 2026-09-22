@@ -3,12 +3,16 @@ Train YOLOv11n on NEU-DET steel defect dataset
 """
 import sys
 from pathlib import Path
+import torch
 from ultralytics import YOLO
 
 # Paths
 BASE = Path(__file__).parent.parent
 DATA_YAML = BASE / "data/processed/yolo/data.yaml"
 OUTPUT_DIR = BASE / "results/models/yolo11n"
+
+# GPU si disponible (serveur), sinon CPU (poste local)
+DEVICE = "0" if torch.cuda.is_available() else "cpu"
 
 def main():
     print("="*60)
@@ -25,7 +29,7 @@ def main():
         imgsz=640,
         batch=8,
         patience=10,
-        device="cpu",
+        device=DEVICE,
         project=str(OUTPUT_DIR.parent),
         name=OUTPUT_DIR.name,
         exist_ok=True,
